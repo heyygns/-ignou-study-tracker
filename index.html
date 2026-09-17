@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IGNOU Study Command Center</title>
+<meta name="theme-color" content="#3A4F7A">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+</head>
+<body>
+
+<div id="toastWrap"></div>
+
+<!-- ===================== AUTH SCREEN ===================== -->
+<div id="authScreen" class="auth-wrap hidden">
+  <div class="auth-card card">
+    <div class="brand" style="padding:0 0 14px;">📚 IGNOU Study<br><small>Command Center</small></div>
+
+    <div id="authSignIn">
+      <div class="auth-title display">Welcome back</div>
+      <div class="auth-sub">Sign in to sync across all your devices.</div>
+      <form id="signInForm">
+        <div class="field"><label>Email</label><input type="email" id="siEmail" required autocomplete="email"></div>
+        <div class="field"><label>Password</label><input type="password" id="siPassword" required autocomplete="current-password"></div>
+        <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+      <div class="auth-switch">
+        <button id="gotoReset">Forgot password?</button>
+      </div>
+      <div class="auth-switch">
+        New here? <button id="gotoSignUp">Create an account</button>
+      </div>
+    </div>
+
+    <div id="authSignUp" class="hidden">
+      <div class="auth-title display">Create your account</div>
+      <div class="auth-sub">One account, synced on every device — phone, office PC, home PC, laptop.</div>
+      <form id="signUpForm">
+        <div class="field"><label>Email</label><input type="email" id="suEmail" required autocomplete="email"></div>
+        <div class="field"><label>Password</label><input type="password" id="suPassword" required minlength="6" autocomplete="new-password"></div>
+        <button class="btn btn-primary btn-block" type="submit">Create account</button>
+      </form>
+      <div class="auth-switch">Already have an account? <button id="gotoSignIn">Sign in</button></div>
+    </div>
+
+    <div id="authReset" class="hidden">
+      <div class="auth-title display">Reset password</div>
+      <div class="auth-sub">We'll email you a reset link.</div>
+      <form id="resetForm">
+        <div class="field"><label>Email</label><input type="email" id="rsEmail" required autocomplete="email"></div>
+        <button class="btn btn-primary btn-block" type="submit">Send reset link</button>
+      </form>
+      <div class="auth-switch"><button id="gotoSignInFromReset">Back to sign in</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== APP SHELL ===================== -->
+<div id="app" class="hidden">
+  <aside class="sidebar">
+    <div class="brand">📚 IGNOU Study<br><small>Command Center</small></div>
+    <nav class="nav" id="sideNav"></nav>
+    <div class="sidebar-foot">
+      <button class="nav-item" data-route="settings"><span class="nav-icon">⚙️</span>Settings</button>
+      <button class="nav-item" id="signOutBtn"><span class="nav-icon">↩</span>Sign out</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="brand">📚 IGNOU Command Center</div>
+      <button class="btn btn-ghost btn-sm" id="topSettingsBtn">⚙️</button>
+    </div>
+    <div class="content" id="content"><div class="spinner" style="margin:60px auto;"></div></div>
+  </div>
+
+  <nav class="bottom-nav" id="bottomNav"></nav>
+</div>
+
+<!-- ===================== FIRST-RUN WIZARD ===================== -->
+<div id="wizardBackdrop" class="modal-backdrop hidden">
+  <div class="modal" id="wizardModal"></div>
+</div>
+
+<!-- generic modal mount used by feature modules -->
+<div id="modalBackdrop" class="modal-backdrop hidden">
+  <div class="modal" id="modalMount"></div>
+</div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
